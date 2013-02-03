@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProcessor", "TaskProcessor\TaskProcessor.csproj", "{221BC9F4-B872-42C0-AC9C-855B6BD45900}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{221BC9F4-B872-42C0-AC9C-855B6BD45900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{221BC9F4-B872-42C0-AC9C-855B6BD45900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{221BC9F4-B872-42C0-AC9C-855B6BD45900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{221BC9F4-B872-42C0-AC9C-855B6BD45900}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
