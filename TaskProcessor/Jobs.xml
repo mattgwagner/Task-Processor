@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Jobs>
+
+    <!-- This is the list of configured jobs in the task processor.  -->
+
+    <!-- CRON - seconds minutes hours day-of-month month day-of-week -->
+
+    <JobConfig>
+      <Name>TestJob</Name>
+      <Class>TaskProcessor.Jobs.TestJob</Class>
+      <Enabled>false</Enabled>
+      <CronTrigger>0 0/1 * ? * *</CronTrigger>
+      <StoreId xsi:nil="true" />
+      <Comments>This is the test job configured to output logs!</Comments>
+    </JobConfig>
+  </Jobs>
+</Configuration>
