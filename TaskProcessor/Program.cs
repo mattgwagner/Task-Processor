@@ -56,6 +56,8 @@ namespace TaskProcessor
                     this.scheduler.ScheduleJob(job, trigger);
                 }
 
+                this.scheduler.Start();
+
                 return true;
             }
 
