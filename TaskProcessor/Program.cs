@@ -31,8 +31,6 @@ namespace TaskProcessor
             public TaskService()
             {
                 this.scheduler = new StdSchedulerFactory().GetScheduler();
-
-                // this.scheduler.JobFactory = new NinjectJobFactory(new IOCModule());
             }
 
             public bool Start(HostControl hostControl)
