@@ -1,6 +1,7 @@
 ﻿using Common.Logging;
 using Quartz;
 using Quartz.Impl;
+using System.Collections.Specialized;
 using TaskProcessor.Utilities;
 using Topshelf;
 
@@ -31,7 +32,12 @@ namespace TaskProcessor
 
             public TaskService()
             {
-                this.scheduler = new StdSchedulerFactory().GetScheduler();
+                var properties = new NameValueCollection();
+
+                // add any customizations to the scheduler here
+                // properties["quartz.threadPool.threadCount"] = 10;
+
+                this.scheduler = new StdSchedulerFactory(properties).GetScheduler();
             }
 
             public bool Start(HostControl hostControl)
