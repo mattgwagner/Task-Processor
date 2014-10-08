@@ -62,16 +62,17 @@ namespace TaskProcessor
 
                 this.scheduler.Start();
 
-                return true;
+                return this.scheduler.IsStarted;
             }
 
             public bool Stop(HostControl hostControl)
             {
                 Log.Info("Stopping Service...");
 
-                this.scheduler.Standby();
+                // wait for any running jobs to complete. this may not be the desired behavior if you have long running jobs!
+                this.scheduler.Shutdown(waitForJobsToComplete: true);
 
-                return true;
+                return this.scheduler.IsShutdown;
             }
         }
     }
