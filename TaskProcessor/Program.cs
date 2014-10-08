@@ -1,6 +1,7 @@
 ﻿using Common.Logging;
 using Quartz;
 using Quartz.Impl;
+using System;
 using System.Collections.Specialized;
 using TaskProcessor.Utilities;
 using Topshelf;
@@ -48,17 +49,33 @@ namespace TaskProcessor
 
                 foreach (var config in Config.Jobs)
                 {
-                    if (!config.Enabled) continue;
+                    if (!config.Enabled)
+                    {
+                        Log.DebugFormat("Job {0} is disabled and is not being added to the scheduler.", config.Class);
+                        continue;
+                    }
 
-                    var job = config.GenerateJob();
+                    var job = JobBuilder.Create()
+                        .OfType(Type.GetType(config.Class))
+                        .WithDescription(config.Comments)
+                        .Build();
+
+                    var cron = CronScheduleBuilder
+                        .CronSchedule(config.CronTrigger)
+                        // Might want to make the timezone EST, UTC, et al.
+                        // .InTimeZone(TimeZone.CurrentTimeZone)
+                        // Might want to change the misfire instructions per-job?
+                        .WithMisfireHandlingInstructionFireAndProceed();
 
                     var trigger = TriggerBuilder.Create()
                         .ForJob(job)
-                        .WithCronSchedule(config.CronTrigger)
+                        .WithSchedule(cron)
                         .StartNow()
                         .Build();
 
                     this.scheduler.ScheduleJob(job, trigger);
+
+                    Log.InfoFormat("Scheduled Job {0}. Next fire at {1} UTC.", config.Class, trigger.GetNextFireTimeUtc());
                 }
 
                 // add listeners
