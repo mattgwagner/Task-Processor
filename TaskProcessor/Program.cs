@@ -39,6 +39,9 @@ namespace TaskProcessor
                 // properties["quartz.threadPool.threadCount"] = 10;
 
                 this.scheduler = new StdSchedulerFactory(properties).GetScheduler();
+
+                // Configure JobFactory to use your IoC container for job instances
+                // this.scheduler.JobFactory = new JobFactory();
             }
 
             public bool Start(HostControl hostControl)

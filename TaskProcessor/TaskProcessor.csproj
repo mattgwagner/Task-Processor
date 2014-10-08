@@ -56,6 +56,7 @@
     <Compile Include="Jobs\TestJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\JobFactory.cs" />
     <Compile Include="Utilities\JobListener.cs" />
     <Compile Include="Utilities\SchedulerListener.cs" />
     <Compile Include="Utilities\TriggerListener.cs" />
