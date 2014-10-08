@@ -1,6 +1,7 @@
 ﻿using Common.Logging;
 using Quartz;
 using Quartz.Impl;
+using TaskProcessor.Utilities;
 using Topshelf;
 
 namespace TaskProcessor
@@ -18,7 +19,7 @@ namespace TaskProcessor
 
                 x.RunAsLocalSystem();
                 x.StartAutomatically();
-                x.EnableServiceRecovery(s => s.RestartService(1)); // restart after 1 minute
+                x.EnableServiceRecovery(s => s.RestartService(delayInMinutes: 1)); // restart after 1 minute
             });
         }
 
@@ -53,6 +54,11 @@ namespace TaskProcessor
 
                     this.scheduler.ScheduleJob(job, trigger);
                 }
+
+                // add listeners
+                this.scheduler.ListenerManager.AddTriggerListener(new TriggerListener(this.scheduler));
+                this.scheduler.ListenerManager.AddSchedulerListener(new SchedulerListener());
+                this.scheduler.ListenerManager.AddJobListener(new JobListener());
 
                 this.scheduler.Start();
 
