@@ -34,7 +34,7 @@ namespace TaskProcessor.Utilities
         {
             try
             {
-                Log.WarnFormat("Trigger misfired for job type: {0} with misfire instruction {21",
+                Log.WarnFormat("Trigger misfired for job type: {0} with misfire instruction {1}",
                     this._scheduler.GetJobDetail(trigger.JobKey).JobType,
                     trigger.MisfireInstruction);
             }
